@@ -1,0 +1,103 @@
+*********************************************************************************************
+*********************************************************************************************
+LINKING FAILED
+The linking process failed in some stage.
+Depending on the phase the linker failed, part of the information contained in this map file may be inaccurate or wrong.
+If the linking failed before the allocation phase finished, then the addresses might be inaccurate.
+Also summary information like the code size is likely to be misleading.
+---------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------
+
+PROGRAM "C:\Users\Hyun\OneDrive - skku.edu\¹ÝµµÃ¼\2021 4-1\codeworrier\week5_2\bin\Flash_Application.abs"
+
+*********************************************************************************************
+TARGET SECTION
+---------------------------------------------------------------------------------------------
+Processor   : Freescale HC12
+Memory Model: SMALL
+File Format : ELF (no debug info)
+Linker      : SmartLinker V-5.0.52 Build 15249, Sep  7 2015
+
+*********************************************************************************************
+FILE SECTION
+---------------------------------------------------------------------------------------------
+
+*********************************************************************************************
+STARTUP SECTION
+---------------------------------------------------------------------------------------------
+
+*********************************************************************************************
+SECTION-ALLOCATION SECTION
+Section Name                    Size  Type     From       To       Segment
+---------------------------------------------------------------------------------------------
+.abs_section_0                    48   N/I        0x0       0x2F   .absSeg0
+.abs_section_30                    4   N/I       0x30       0x33   .absSeg1
+.abs_section_34                   12   N/I       0x34       0x3F   .absSeg2
+.abs_section_40                   64   N/I       0x40       0x7F   .absSeg3
+.abs_section_80                   32   N/I       0x80       0x9F   .absSeg4
+.abs_section_a0                   40   N/I       0xA0       0xC7   .absSeg5
+.abs_section_c8                    8   N/I       0xC8       0xCF   .absSeg6
+.abs_section_d0                    8   N/I       0xD0       0xD7   .absSeg7
+.abs_section_d8                    8   N/I       0xD8       0xDF   .absSeg8
+.abs_section_e0                    8   N/I       0xE0       0xE7   .absSeg9
+.abs_section_e8                    8   N/I       0xE8       0xEF   .absSeg10
+.abs_section_f0                    8   N/I       0xF0       0xF7   .absSeg11
+.abs_section_f8                    8   N/I       0xF8       0xFF   .absSeg12
+.abs_section_100                  16   N/I      0x100      0x10F   .absSeg13
+.abs_section_110                  12   N/I      0x110      0x11B   .absSeg14
+.abs_section_120                  32   N/I      0x120      0x13F   .absSeg15
+.abs_section_140                  64   N/I      0x140      0x17F   .absSeg16
+.abs_section_180                  64   N/I      0x180      0x1BF   .absSeg17
+.abs_section_1c0                  64   N/I      0x1C0      0x1FF   .absSeg18
+.abs_section_200                  64   N/I      0x200      0x23F   .absSeg19
+.abs_section_240                  48   N/I      0x240      0x26F   .absSeg20
+.abs_section_280                  64   N/I      0x280      0x2BF   .absSeg21
+
+Summary of section sizes per section type:
+NO_INIT (N/I):         2AC (dec:      684)
+
+*********************************************************************************************
+VECTOR-ALLOCATION SECTION
+    Address     InitValue   InitFunction
+---------------------------------------------------------------------------------------------
+
+*********************************************************************************************
+OBJECT-ALLOCATION SECTION
+     Name               Module                 Addr   hSize   dSize     Ref    Section   RLIB
+---------------------------------------------------------------------------------------------
+
+*********************************************************************************************
+MODULE STATISTIC
+  Name                                      Data   Code  Const
+---------------------------------------------------------------------------------------------
+
+*********************************************************************************************
+SECTION USE IN OBJECT-ALLOCATION SECTION
+---------------------------------------------------------------------------------------------
+
+*********************************************************************************************
+OBJECT LIST SORTED BY ADDRESS
+     Name                                      Addr   hSize   dSize     Ref    Section   RLIB
+---------------------------------------------------------------------------------------------
+
+*********************************************************************************************
+UNUSED-OBJECTS SECTION
+---------------------------------------------------------------------------------------------
+
+*********************************************************************************************
+COPYDOWN SECTION
+---------------------------------------------------------------------------------------------
+
+*********************************************************************************************
+OBJECT-DEPENDENCIES SECTION
+---------------------------------------------------------------------------------------------
+
+*********************************************************************************************
+STATISTIC SECTION
+---------------------------------------------------------------------------------------------
+
+ExeFile:
+--------
+Number of blocks to be downloaded: 0
+Total size of all blocks to be downloaded: 0
+
