@@ -1,10 +1,11 @@
 #include "main.h"                     
      
-int ready =0;  
+int ready =0;
+int timeout=0;  
 int interrupt_sw1 =0;
 int interrupt_sw2 =0;
 int interrupt_sw3 =0;         
-unsigned char RX[30];
+unsigned char RX[40];
 unsigned char TX[30];  
 unsigned char CNT =0 ; // number of cnt 
 unsigned char LED_CNT = 0; // num of LED ON
@@ -26,34 +27,59 @@ void main ()
   set_led((unsigned int)0);  
 	for (;;){
 	 if(ready==1 && RX[0] =='<'){
-	    for(RX_len=1; RX[RX_len-1]!='>'; RX_len++);
-	    data_size = RX_len - (8+expected_size[RX[6]-'0']);
-	    if(data_size >0){    
-	        // overdatasize  
-        sprintf(TX,"<0%c1000%d>",SYSTEM,0);      
+	    for(RX_len=1; RX[RX_len-1]!='>'; RX_len++);    
+	    if(RX_len >= 27){ 
+        sprintf(TX,"<0%c1000%d>",SYSTEM,7);      
         write_sci0(TX); 
-	    }else if(data_size<0){  
-	        // lossdatasize  
-        sprintf(TX,"<0%c1000%d>",SYSTEM,1);      
-        write_sci0(TX); 
+        
+  	    memset(RX,0,sizeof(char)*40);
+	      timeout=0;
+	      ready=0; 
+	      continue;
+	    }
 	      
-	    } 
+	  
 	  // Group range check
 	    if(RX[1] != '0' || !(RX[2] >= '0' && RX[2] <='5')) {
         sprintf(TX,"<0%c1000%d>",SYSTEM,2);      // overGroupCnt
         write_sci0(TX); 
+  	  memset(RX,0,sizeof(char)*40);
+  	  ready=0;
+  	  continue; 
 	    }
     // Class range check
       if(!(RX[3] == '0' || RX[3] == '1')){  
         sprintf(TX,"<0%c1000%d>",SYSTEM,3);   // overClassCnt
-        write_sci0(TX);
+        write_sci0(TX);  
+  	  memset(RX,0,sizeof(char)*40);
+  	  ready=0;
+  	  continue;
       }
     // Format range check
       if(!(RX[6] >= '0' && RX[6] <= '5')){  
         sprintf(TX,"<0%c1000%d>",SYSTEM,4);   // overFormatCnt
-        write_sci0(TX);
+        write_sci0(TX); 
+  	  memset(RX,0,sizeof(char)*40);
+  	  ready=0;
+  	  continue;
       }
 	    
+	    data_size = RX_len - (8+expected_size[RX[6]-'0']);
+	    if(data_size >0){    
+	        // overdatasize  
+        sprintf(TX,"<0%c1000%d>",SYSTEM,0);      
+        write_sci0(TX);   
+  	  memset(RX,0,sizeof(char)*40);
+  	  ready=0;
+  	  continue;
+	    }else if(data_size<0){  
+	        // lossdatasize  
+        sprintf(TX,"<0%c1000%d>",SYSTEM,1);      
+        write_sci0(TX);  
+  	  memset(RX,0,sizeof(char)*40);
+  	  ready=0;
+  	  continue;
+	    }
 	    // RX[1:2] group num , RX[3] CMD class, RX[4:5] CMD_NUM RX[6] Data format
       
       switch(RX[2]){  // group number  
@@ -78,15 +104,7 @@ void main ()
           set_led(1);
       }
   	   
-	   /*
-	   memset(RX,0,sizeof(char)*30); 
-  	 ready=0;
-  	 */
-	 
-  	//  write_string(LCD_LINE2,RX);
-  	//  write_string(LCD_LINE1+8,RX_len);
-  	  memset(RX,0,sizeof(char)*30);
-  	  m_delay(1);
+  	  memset(RX,0,sizeof(char)*40);
   	  ready=0;
   	
 	 }
@@ -123,8 +141,7 @@ void main ()
         sprintf(TX,"<0%c1000%d>",ADC,i);
         write_sci0(TX);
         interrupt_sw3 = 0; 
-	 }
-	  memset(TX,0,30);	 
+	 }	 
 	}
 	
 }

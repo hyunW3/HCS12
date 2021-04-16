@@ -3,8 +3,9 @@
 unsigned char *txbuffer_sci0; //text를 저장하는 버퍼이다. 
 int txoffset_sci0;            //text문자열 길이를 알기위해 필요한 변수이다.         
 unsigned char *rxbuffer_sci0; //rx를 저장하는 버퍼이다.
-extern unsigned char RX[30];
+extern unsigned char RX[40];
 extern int ready;
+extern int timeout;  
 int offset=0;
 
 /*********************************************************/
@@ -44,14 +45,15 @@ void write_sci0(unsigned char *text)
 void sci0_handler(void)
 {
     
-  if(Sci0.scisr1.bit.rdrf == 1 && ready == 0){   //수신 상태이면 RDRF는 반드시 1이 되어있다.
+  //if(Sci0.scisr1.bit.rdrf == 1 && ready == 0){   //수신 상태이면 RDRF는 반드시 1이 되어있다.
+  if(Sci0.scisr1.bit.rdrf == 1){   //수신 상태이면 RDRF는 반드시 1이 되어있다.
      
      *rxbuffer_sci0 = Sci0.scidrl.byte;
-     if(*rxbuffer_sci0 == '<') offset =0;
+     if(*rxbuffer_sci0 == '<') offset =0;                         
      RX[offset++] =  *rxbuffer_sci0;
      //write_sci0(rxbuffer_sci0);
      //write_char(LCD_LINE2+offset,*rxbuffer_sci0);
-     if(*rxbuffer_sci0 == '>') {
+     if(*rxbuffer_sci0 == '>' || offset >=27) {
       RX[0] = '<';     // unexpected
       RX[offset]='\0';
        ready=1;
