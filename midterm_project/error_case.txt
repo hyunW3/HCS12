@@ -1,0 +1,10 @@
+
+<0300250123456789ABCDEFG>	// OverDataSize case 	-> Err  0
+<0300250123456789ABCDE>	// LossDataSize case 	-> Err  1
+<0710005>					// OverGroupCnd case 	-> Err  2
+<0130002>					// OverClassCnd			-> Err  3
+<0000067>					// OverFormatCnt		-> Err 	4
+<0004107>					// CantFindCmd_LED		-> Err	5
+<0300150123456789ABCDEF> = proper CMD_LCD
+<0300250123456789ABCDEF>	// CantFindCmd_LCD		-> Err	6 
+<07100050710005071000500000 // timeout case 		-> Err  7
